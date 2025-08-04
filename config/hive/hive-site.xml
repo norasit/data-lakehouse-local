@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<configuration>
+
+  <!-- Hive Metastore URI (สำหรับ Spark, Trino, etc.) -->
+  <property>
+    <name>hive.metastore.uris</name>
+    <value>thrift://hive-metastore:9083</value>
+  </property>
+
+  <!-- Warehouse directory (MinIO via S3A) -->
+  <property>
+    <name>hive.metastore.warehouse.dir</name>
+    <value>s3a://lakehouse-data/warehouse</value>
+  </property>
+
+  <!-- File system implementation -->
+  <property>
+    <name>fs.s3a.impl</name>
+    <value>org.apache.hadoop.fs.s3a.S3AFileSystem</value>
+  </property>
+
+  <!-- Access credentials for MinIO -->
+  <property>
+    <name>fs.s3a.access.key</name>
+    <value>minioadmin</value>
+  </property>
+
+  <property>
+    <name>fs.s3a.secret.key</name>
+    <value>minioadmin</value>
+  </property>
+
+  <!-- MinIO endpoint -->
+  <property>
+    <name>fs.s3a.endpoint</name>
+    <value>http://minio:9000</value>
+  </property>
+
+  <!-- Disable SSL and path-style access for MinIO -->
+  <property>
+    <name>fs.s3a.path.style.access</name>
+    <value>true</value>
+  </property>
+
+  <property>
+    <name>fs.s3a.connection.ssl.enabled</name>
+    <value>false</value>
+  </property>
+
+  <!-- Optional: เพิ่ม retry / timeout -->
+  <property>
+    <name>fs.s3a.connection.timeout</name>
+    <value>5000</value>
+  </property>
+
+</configuration>
