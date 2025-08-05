@@ -53,6 +53,21 @@ services:
       - minio
       - hive-metastore
 
+  spark-init:
+    build:
+      context: ./spark
+      dockerfile: Dockerfile
+    container_name: spark-init
+    entrypoint: ["/opt/spark/init-spark.sh"]
+    environment:
+      - AWS_ACCESS_KEY_ID=minioadmin
+      - AWS_SECRET_ACCESS_KEY=minioadmin
+    depends_on:
+      - spark
+      - hive-metastore
+    volumes:
+      - ./spark/init-spark.sh:/opt/spark/init-spark.sh:ro
+
   trino:
     image: trinodb/trino:latest
     container_name: trino
